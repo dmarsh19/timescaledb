@@ -3,6 +3,7 @@
 **/CMakeCache.txt
 /sql/tests/unit/testoutputs.tmp
 /sql/timescaledb--*.sql
+/tsl/test/sql/continuous_aggs_query-*.sql
 /data/
 /src/*.o
 /src/*.so
