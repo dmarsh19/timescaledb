@@ -2005,14 +2005,14 @@ hypertable_tuple_match_name(TupleInfo *ti, void *data)
 
 	if ((accum->schema_name == NULL ||
 		 DatumGetBool(DirectFunctionCall2Coll(nameeq,
-		 								  C_COLLATION_OID,
-										  NameGetDatum(accum->schema_name),
-										  NameGetDatum(&fd.schema_name)))) &&
+											  C_COLLATION_OID,
+											  NameGetDatum(accum->schema_name),
+											  NameGetDatum(&fd.schema_name)))) &&
 		(accum->table_name == NULL ||
 		 DatumGetBool(DirectFunctionCall2Coll(nameeq,
-		 								  C_COLLATION_OID,
-										  NameGetDatum(accum->table_name),
-										  NameGetDatum(&fd.table_name)))))
+											  C_COLLATION_OID,
+											  NameGetDatum(accum->table_name),
+											  NameGetDatum(&fd.table_name)))))
 		accum->ht_oids = lappend_oid(accum->ht_oids, relid);
 	return SCAN_CONTINUE;
 }

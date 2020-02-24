@@ -86,7 +86,8 @@ static create_upper_paths_hook_type prev_create_upper_paths_hook;
 static bool contain_param(Node *node);
 static void cagg_reorder_groupby_clause(RangeTblEntry *subq_rte, int rtno, List *outer_sortcl,
 										List *outer_tlist);
-static void expand_hypertable_inheritance(PlannerInfo *root, Oid relation_objectid, bool inhparent, RelOptInfo *rel);
+static void expand_hypertable_inheritance(PlannerInfo *root, Oid relation_objectid, bool inhparent,
+										  RelOptInfo *rel);
 
 #define CTE_NAME_HYPERTABLES "hypertable_parent"
 
@@ -391,7 +392,7 @@ is_hypertable_chunk_dml(PlannerInfo *root, RelOptInfo *rel, Index rti, RangeTblE
 		if (parent_oid != InvalidOid && rte->relid != parent_oid)
 		{
 			if (ts_is_hypertable(parent_oid))
-							return parent_oid;
+				return parent_oid;
 		}
 #else
 		/* In PG12 UPDATE/DELETE on inheritance relations are planned in two
