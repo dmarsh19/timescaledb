@@ -40,7 +40,7 @@
 #include <optimizer/optimizer.h>
 #endif
 
-#include "planner_import.h"
+#include "planner.h"
 
 #if PG12 || (PG11 && PG_VERSION_NUM >= 110002) || (PG10 && PG_VERSION_NUM >= 100007) ||            \
 	(PG96 && PG_VERSION_NUM >= 90612)
