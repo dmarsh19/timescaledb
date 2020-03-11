@@ -6,9 +6,9 @@
 -- Generated columns support tests
 --
 CREATE TABLE foo (
-	a INT NOT NULL,
-	b INT,
-	c INT GENERATED ALWAYS AS (a + b) STORED
+    a INT NOT NULL,
+    b INT,
+    c INT GENERATED ALWAYS AS (a + b) STORED
 );
 SELECT table_name FROM create_hypertable('foo', 'a', chunk_time_interval=>10);
 
@@ -28,20 +28,10 @@ DROP TABLE foo;
 
 -- Generated as expression
 CREATE TABLE bar (
-	a INT NOT NULL,
-	b INT GENERATED ALWAYS AS (a + 123) STORED
+    a INT NOT NULL,
+    b INT GENERATED ALWAYS AS (a + 123) STORED
 );
 \set ON_ERROR_STOP 0
 SELECT table_name FROM create_hypertable('bar', 'a', 'b', 2, chunk_time_interval=>10);
 \set ON_ERROR_STOP 1
 DROP TABLE bar;
-
--- Generated as identity
-CREATE TABLE baz (
-	a INT NOT NULL,
-	b INT GENERATED ALWAYS AS IDENTITY
-);
-\set ON_ERROR_STOP 0
-SELECT table_name FROM create_hypertable('baz', 'a', 'b', 2, chunk_time_interval=>10);
-\set ON_ERROR_STOP 1
-DROP TABLE baz;

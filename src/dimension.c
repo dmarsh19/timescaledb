@@ -1203,18 +1203,14 @@ ts_dimension_info_validate(DimensionInfo *info)
 #if PG12_GE
 	{
 		bool isgenerated;
-		bool isidentity;
-
-		datum = SysCacheGetAttr(ATTNAME, tuple, Anum_pg_attribute_attidentity, &isnull);
-		Assert(!isnull);
-		isidentity = (DatumGetChar(datum) != '\0');
 
 		datum = SysCacheGetAttr(ATTNAME, tuple, Anum_pg_attribute_attgenerated, &isnull);
 		Assert(!isnull);
 		isgenerated = (DatumGetChar(datum) == ATTRIBUTE_GENERATED_STORED);
 
 		datum = 0;
-		if (isidentity || isgenerated)
+
+		if (isgenerated)
 			ereport(ERROR,
 					(errcode(ERRCODE_FEATURE_NOT_SUPPORTED),
 					 errmsg("invalid partitioning column"),
